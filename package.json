@@ -1,0 +1,33 @@
+{
+  "name": "wifi-lightbulb-classroom-soundmeter",
+  "version": "1.0.0",
+  "description": "Changing the color of a wifi smart lightbulb when the sound level in a classroom changes for classroom management",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinl95/WiFi-Lightbulb-Classroom-Soundmeter.git"
+  },
+  "keywords": [
+    "wifi",
+    "classroom",
+    "management",
+    "education",
+    "lightbulb",
+    "sound",
+    "meter"
+  ],
+  "author": "Kevin Loeffler",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/kevinl95/WiFi-Lightbulb-Classroom-Soundmeter/issues"
+  },
+  "homepage": "https://github.com/kevinl95/WiFi-Lightbulb-Classroom-Soundmeter#readme",
+  "devDependencies": {
+    "electron": "^7.1.5",
+    "magic-home": "^2.4.0",
+    "p5": "^0.10.2"
+  }
+}
