@@ -4,7 +4,7 @@
   "description": "Changing the color of a wifi smart lightbulb when the sound level in a classroom changes for classroom management",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,8 @@
     "electron": "^7.1.5",
     "magic-home": "^2.4.0",
     "p5": "^0.10.2"
+  },
+  "dependencies": {
+    "xel": "0.0.214"
   }
 }
