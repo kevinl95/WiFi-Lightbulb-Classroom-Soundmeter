@@ -8,22 +8,23 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="node_modules/xel/themes/material.css">
-  <script src="node_modules/xel/xel.min.js"></script>
   <!-- Scripts -->
   <script>
     delete module.exports
   </script>
-  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="node_modules/xel/xel.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./lightbulb.js"></script>
 </head>
 
 <body>
   <div id="container" class="container-fluid">
     <h3>Select your lightbulb:</h3>
-    <x-select style="margin-left: auto; margin-right:auto; width: 100%;">
-      <x-menu>
+    <x-select id="selection" style="margin-left: auto; margin-right:auto; width: 100%;">
+      <x-menu id="dropdown">
       </x-menu>
     </x-select>
-    <x-button style="margin-left: auto; margin-right:auto; width: 500px;">
+    <x-button id="scan" style="margin-left: auto; margin-right:auto; width: 500px;">
       <x-box>
         <x-icon name="search"></x-icon>
         <x-label>Scan for Lightbulbs</x-label>
