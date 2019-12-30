@@ -14,6 +14,8 @@
   </script>
   <script src="node_modules/xel/xel.min.js"></script>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/p5/lib/p5.js"></script>
+  <script src="node_modules/p5/lib/addons/p5.sound.min.js"></script>
   <script src="./lightbulb.js"></script>
 </head>
 
@@ -37,12 +39,18 @@
       <x-icon name="volume-up" skin="primary"></x-icon>
     </x-box>
     <h3>Current volume in the classroom:</h3>
-    <x-progressbar value="0.0"></x-progressbar>
+    <x-progressbar id="vol" value="0.0"></x-progressbar>
     <br></br>
-    <x-button style="margin-left: auto; margin-right:auto; width: 500px;">
+    <x-button id="listen" style="margin-left: auto; margin-right:auto; width: 500px;">
       <x-box>
         <x-icon name="mic"></x-icon>
         <x-label>Begin Listening</x-label>
+      </x-box>
+    </x-button>
+    <x-button id="stop" style="margin-left: auto; margin-right:auto; width: 500px;">
+      <x-box>
+        <x-icon name="stop"></x-icon>
+        <x-label>Stop Listening</x-label>
       </x-box>
     </x-button>
   </div>
