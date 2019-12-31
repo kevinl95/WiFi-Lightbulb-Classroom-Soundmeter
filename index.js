@@ -7,7 +7,8 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    icon: __dirname + '/icon.ico'
   })
 
   // and load the index.html of the app.
