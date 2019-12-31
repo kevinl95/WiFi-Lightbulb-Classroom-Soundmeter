@@ -27,11 +27,11 @@
   "homepage": "https://github.com/kevinl95/WiFi-Lightbulb-Classroom-Soundmeter#readme",
   "devDependencies": {
     "electron": "^7.1.5",
-    "magic-home": "^2.4.0",
-    "p5": "^0.10.2"
+    "electron-packager": "^14.1.1"
   },
   "dependencies": {
     "jquery": "^3.4.1",
-    "xel": "0.0.214"
+    "xel": "0.0.214",
+    "magic-home": "^2.4.0"
   }
 }

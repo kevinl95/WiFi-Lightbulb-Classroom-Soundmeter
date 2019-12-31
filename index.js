@@ -11,6 +11,9 @@ function createWindow () {
     icon: __dirname + '/icon.ico'
   })
 
+  // Hide the menu bar
+  win.setMenu(null)
+
   // and load the index.html of the app.
   win.loadFile('index.html')
 }
