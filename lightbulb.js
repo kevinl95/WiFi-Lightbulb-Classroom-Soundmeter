@@ -1,5 +1,7 @@
 var max = 100;
 var stilllisten = false;
+var level = 0;
+var rgb = [];
 
 /**
  * Converts an HSL color value to RGB. Conversion formula
@@ -47,7 +49,7 @@ function numberToColorHsl(i) {
   return rgb;
 }
 
-function startlisten(light) {
+async function startlisten(light) {
   // Get the overall volume (between 0 and 100)
   const {
     desktopCapturer
@@ -62,52 +64,59 @@ function startlisten(light) {
             audio: true,
             video: false,
           })
-          handleStream(stream, light)
+          await handleStream(stream, light)
         } catch (e) {
           handleError(e)
-        }
-        if (stilllisten == false) {
-          return
         }
       }
     }
   })
 }
 
-function handleStream(stream, light) {
-  audioContext = new AudioContext();
-  analyser = audioContext.createAnalyser();
-  microphone = audioContext.createMediaStreamSource(stream);
-  javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+async function handleStream(stream, light) {
+  if (stilllisten == true) {
+    audioContext = new AudioContext();
+    analyser = audioContext.createAnalyser();
+    microphone = audioContext.createMediaStreamSource(stream);
+    javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-  analyser.smoothingTimeConstant = 0.8;
-  analyser.fftSize = 1024;
+    analyser.smoothingTimeConstant = 0.8;
+    analyser.fftSize = 1024;
 
-  microphone.connect(analyser);
-  analyser.connect(javascriptNode);
-  javascriptNode.connect(audioContext.destination);
-  javascriptNode.onaudioprocess = function() {
-    var array = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(array);
-    var values = 0;
+    microphone.connect(analyser);
+    analyser.connect(javascriptNode);
+    javascriptNode.connect(audioContext.destination);
+    javascriptNode.onaudioprocess = await async function() {
+      var array = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(array);
+      var values = 0;
 
-    var length = array.length;
-    for (var i = 0; i < length; i++) {
-      values += (array[i]);
+      var length = array.length;
+      for (var i = 0; i < length; i++) {
+        values += (array[i]);
+      }
+      var average = values / length;
+      let volume = Math.round(average);
+      var volBar = $('#vol');
+      volBar.val(volume / max);
+      var applyThresh = (max / 100) * (volume - 100) + max;
+      console.log(applyThresh);
+      level = applyThresh;
+      rgb = numberToColorHsl(applyThresh / max);
+      console.log(rgb);
     }
-
-    var average = values / length;
-    let volume = Math.round(average);
-    var volBar = $('#vol');
-    volBar.val(volume/max);
-    var applyThresh = (max / 100) * (volume - 100) + max;
-    var rgb = numberToColorHsl(applyThresh / max);
-    light.setColorAndWarmWhite(rgb[0], rgb[1], rgb[2], 0);
   }
 }
 
 function handleError(e) {
   console.log(e)
+}
+
+function changeColor(light) {
+  console.log('Running change color')
+  light.setColor(rgb[0], rgb[1], rgb[2], handleError).then(success => {
+    console.log('Success!')
+  });
 }
 
 $(() => {
@@ -137,8 +146,11 @@ $(() => {
     stilllisten = true;
     var rawBulb = $('#dropdown').text();
     console.log(rawBulb.split(": ")[1]);
-    let light = new Control(rawBulb.split(": ")[1]);
+    let light = new Control(rawBulb.split(": ")[1], {apply_masks:true});
     startlisten(light);
+    setInterval(function() {
+      changeColor(light);
+    }, 5000);
   });
   $('#stop').on('click', function(event) {
     stilllisten = false;
