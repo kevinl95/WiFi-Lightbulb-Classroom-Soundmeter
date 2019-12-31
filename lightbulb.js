@@ -49,15 +49,12 @@ function numberToColorHsl(i) {
 
 function startlisten(light) {
   // Get the overall volume (between 0 and 100)
-  console.log('In startlisten');
-  console.log(stilllisten);
   const {
     desktopCapturer
   } = require('electron');
   desktopCapturer.getSources({
     types: ['window', 'screen']
   }).then(async sources => {
-    console.log(sources)
     for (const source of sources) {
       if (source.name === 'Wifi Lightbulb Classroom Soundmeter') {
         try {
@@ -68,6 +65,9 @@ function startlisten(light) {
           handleStream(stream, light)
         } catch (e) {
           handleError(e)
+        }
+        if (stilllisten == false) {
+          return
         }
       }
     }
@@ -98,13 +98,11 @@ function handleStream(stream, light) {
 
     var average = values / length;
     let volume = Math.round(average);
-    console.log(volume);
     var volBar = $('#vol');
     volBar.val(volume/max);
     var applyThresh = (max / 100) * (volume - 100) + max;
     var rgb = numberToColorHsl(applyThresh / max);
-    console.log(rgb);
-    light.setColor(rgb[0], rgb[1], rgb[2]);
+    light.setColorAndWarmWhite(rgb[0], rgb[1], rgb[2], 0);
   }
 }
 
@@ -137,7 +135,8 @@ $(() => {
       Control
     } = require('magic-home');
     stilllisten = true;
-    var rawBulb = $('#selection').val();
+    var rawBulb = $('#dropdown').text();
+    console.log(rawBulb.split(": ")[1]);
     let light = new Control(rawBulb.split(": ")[1]);
     startlisten(light);
   });
