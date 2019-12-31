@@ -34,19 +34,20 @@ async function startlisten(light) {
 }
 
 async function handleStream(stream, light) {
-  if (stilllisten == true) {
-    audioContext = new AudioContext();
-    analyser = audioContext.createAnalyser();
-    microphone = audioContext.createMediaStreamSource(stream);
-    javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+  audioContext = new AudioContext();
+  analyser = audioContext.createAnalyser();
+  microphone = audioContext.createMediaStreamSource(stream);
+  javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-    analyser.smoothingTimeConstant = 0.8;
-    analyser.fftSize = 1024;
+  analyser.smoothingTimeConstant = 0.8;
+  analyser.fftSize = 1024;
 
-    microphone.connect(analyser);
-    analyser.connect(javascriptNode);
-    javascriptNode.connect(audioContext.destination);
-    javascriptNode.onaudioprocess = await async function() {
+  microphone.connect(analyser);
+  analyser.connect(javascriptNode);
+  javascriptNode.connect(audioContext.destination);
+  javascriptNode.onaudioprocess = await async function() {
+    console.log(stilllisten)
+    if (stilllisten == true) {
       var array = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(array);
       var values = 0;
@@ -57,14 +58,15 @@ async function handleStream(stream, light) {
       }
       var average = values / length;
       let volume = Math.round(average);
-      console.log('VOLUME');
-      console.log(volume);
       var volBar = $('#vol');
       var scaled = volume / max;
       volBar.val(scaled);
-      console.log(scaled);
       rgb = numberToColor(scaled);
-      console.log(rgb);
+    }
+    else {
+      var volBar = $('#vol');
+      volBar.val(0);
+      rgb = numberToColor(0);
     }
   }
 }
@@ -74,10 +76,7 @@ function handleError(e) {
 }
 
 function changeColor(light) {
-  console.log('Running change color')
-  light.setColorWithBrightness(rgb[0], rgb[1], rgb[2], 100, handleError).then(success => {
-    console.log('Success!')
-  });
+  light.setColorWithBrightness(rgb[0], rgb[1], rgb[2], 100, handleError).then(success => {});
 }
 
 $(() => {
