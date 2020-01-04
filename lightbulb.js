@@ -46,7 +46,6 @@ async function handleStream(stream, light) {
   analyser.connect(javascriptNode);
   javascriptNode.connect(audioContext.destination);
   javascriptNode.onaudioprocess = await async function() {
-    console.log(stilllisten)
     if (stilllisten == true) {
       var array = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(array);
@@ -105,11 +104,13 @@ $(() => {
     } = require('magic-home');
     stilllisten = true;
     var rawBulb = $('#dropdown').text();
-    console.log(rawBulb.split(": ")[1]);
     let light = new Control(rawBulb.split(": ")[1], {
       apply_masks: true,
-      wait_for_reply: false
+      wait_for_reply: false,
     });
+    // Set any additional parameters like whether or not the controller
+    // supports cold_white values.
+    light.queryState(handleError);
     light.setPower(true).then(success => {
       startlisten(light);
       setInterval(function() {
