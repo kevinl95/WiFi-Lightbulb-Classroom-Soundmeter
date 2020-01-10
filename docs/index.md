@@ -8,7 +8,9 @@ Changing the color of a Wi-Fi smart lightbulb when the sound level in a classroo
 Set an upper bound on how loud you want your class to be. As they get closer to this threshold, the bulb turns increasingly red. If they're quiet? The bulb turns more and more green!
 
 Works with MagicHome brand smart lightbulbs, such as these which are known to work:
-[MagicLight WiFi Smart Light Bulb, 2nd Generation Dimmable Multicolor A19 E26 Household LED Bulb](https://www.amazon.com/gp/product/B07SYX4T7M/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07SYX4T7M&linkCode=as2&tag=loefflerlabs-20&linkId=0588015d569ded64d6b5e9d481544895
+
+[MagicLight WiFi Smart Light Bulb, 2nd Generation Dimmable Multicolor A19 E26 Household LED Bulb](https://www.amazon.com/gp/product/B07SYX4T7M/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07SYX4T7M&linkCode=as2&tag=loefflerlabs-20&linkId=0588015d569ded64d6b5e9d481544895)
+
 [MagicLight Smart WiFi Alexa Light Bulb, A19 7w (60w Equivalent)](https://www.amazon.com/gp/product/B07VQJYYYR/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07VQJYYYR&linkCode=as2&tag=loefflerlabs-20&linkId=0525c006954f1877f61469309531e40f)
 
 # How to Install
