@@ -1,4 +1,7 @@
 # Wi-Fi Lightbulb Classroom Soundmeter
+
+[![](http://img.youtube.com/vi/c6jcLHl6zYA/0.jpg)](http://www.youtube.com/watch?v=c6jcLHl6zYA "Demo Video")
+
 Changing the color of a Wi-Fi smart lightbulb when the sound level in a classroom changes for classroom management!
 
 Set an upper bound on how loud you want your class to be. As they get closer to this threshold, the bulb turns increasingly red. If they're quiet? The bulb turns more and more green!

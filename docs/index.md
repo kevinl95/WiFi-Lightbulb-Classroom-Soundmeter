@@ -1,5 +1,7 @@
 # Wifi Lightbulb Classroom Soundmeter
 
+[![](http://img.youtube.com/vi/c6jcLHl6zYA/0.jpg)](http://www.youtube.com/watch?v=c6jcLHl6zYA "Demo Video")
+
 ![Windows screenshot of the program in action](screenshot.PNG)
 
 
