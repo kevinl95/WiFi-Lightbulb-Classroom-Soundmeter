@@ -106,7 +106,10 @@ $(() => {
     var rawBulb = $('#dropdown').text();
 
     if(rawBulb.trim().length == 0) {
-	    alert('No Bulb Selected');
+
+	const { dialog } = require('electron').remote;
+	dialog.showErrorBox('Whoops!', 'No Lightbulb Was Selected.');
+ 
     } else {
     	let light = new Control(rawBulb.split(": ")[1], {
     	  apply_masks: true,
