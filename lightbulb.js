@@ -104,19 +104,23 @@ $(() => {
     } = require('magic-home');
     stilllisten = true;
     var rawBulb = $('#dropdown').text();
-    let light = new Control(rawBulb.split(": ")[1], {
-      apply_masks: true,
-      wait_for_reply: false,
-    });
+
+    if(rawBulb.trim().length == 0) {
+	    alert('No Bulb Selected');
+    } else {
+    	let light = new Control(rawBulb.split(": ")[1], {
+    	  apply_masks: true,
+    	  wait_for_reply: false,
+    	});
     // Set any additional parameters like whether or not the controller
     // supports cold_white values.
-    light.queryState(handleError);
-    light.setPower(true).then(success => {
-      startlisten(light);
-      setInterval(function() {
-        changeColor(light);
-      }, 1000);
-    });
+    	light.queryState(handleError);
+    	light.setPower(true).then(success => {
+    	  startlisten(light);
+    	  setInterval(function() {
+    	    changeColor(light);
+    	  }, 1000);});
+    }
   });
   $('#stop').on('click', function(event) {
     stilllisten = false;
