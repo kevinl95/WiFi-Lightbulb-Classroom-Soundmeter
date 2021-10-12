@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/kevinl95/WiFi-Lightbulb-Classroom-Soundmeter#readme",
   "devDependencies": {
-    "electron": "^7.1.5",
+    "electron": "^11.5.0",
     "electron-packager": "^14.2.1"
   },
   "dependencies": {
